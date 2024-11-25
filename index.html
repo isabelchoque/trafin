@@ -1,0 +1,147 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link href="../k/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../k/css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+	<link rel="shortcut icon" href="../k/img/favicon.ico">
+	<title>Venta de Muebles</title>
+	<style type="text/css">
+		.control {
+			object-fit: cover;
+			width: 300px;
+			height: 300px;
+		}
+		body
+{
+    background-color: pink;
+}
+	</style>
+	<script type="text/javascript">
+		var vimg = ["cajonero1.jpg","cajonero2.jpg","escritorio1.jpg","gcopa1.jpg","gcopa2.jpg",
+		"librero1.jpg","librero2.jpg","librero3.jpg","modular1.jpg",
+		"ropero1.jpg","ropero2.jpg","ropero3.jpg",
+		"cama1.jpg","cama2.jpg","cama3.jpg"];
+		var vtit = ["cajonero1 500bs.","cajonero2 400bs.","escritorio 300bs.","gcopa1 600bs.",
+		"gcopa2 800bs.","librero1 400bs.","librero2 400bs.","librero3 500bs.",
+		"modular1 250bs.","ropero1 1800bs.","ropero2 1200bs.","ropero3 1800bs.",
+		"cama1 2000bs.","cama2 2200bs.","cama3 2600bs."];
+		var Indice=0;
+		var pedidos=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		var precio=[500,400,300,600,800,400,400,500,250,1800,1200,1800,2000,2200,2600];
+		var tPagar=0;
+		function comprar(){
+			pedidos[Indice]=pedidos[Indice]+1;
+			document.getElementById("nham").value=pedidos[Indice];
+			tPagar+=precio[Indice];
+			document.getElementById("tp").value=tPagar;
+			tpedido="";
+			for (i=0;i<15;i++)
+				tpedido=tpedido+pedidos[i]+";";
+			document.getElementById("x").value=tpedido;
+		}
+		
+		function vende(qham){
+		    Indice=qham;
+			pedidos[Indice]=pedidos[Indice]+1;
+			document.getElementById("nham").value=pedidos[Indice];
+			tPagar+=precio[Indice];
+			document.getElementById("tp").value=tPagar;
+			tpedido="";
+			for (i=0;i<15;i++)
+				tpedido=tpedido+pedidos[i]+";";
+			document.getElementById("x").value=tpedido;
+		    var qimg = document.getElementById("imagen");
+			qimg.src=vimg[Indice];
+			document.getElementById("nham").value=pedidos[Indice];
+			document.getElementById("titulo").value=vtit[Indice];
+		}
+		function devolver(){
+			if (pedidos[Indice]>0) {
+				pedidos[Indice]=pedidos[Indice]-1;
+			    document.getElementById("nham").value=pedidos[Indice];
+			    tPagar-=precio[Indice];
+			    document.getElementById("tp").value=tPagar;
+			}
+			else
+				alert("No puedes hacer eso Caiman!!!");
+			tpedido="";
+			for (i=0;i<15;i++)
+				tpedido=tpedido+pedidos[i]+";";
+			document.getElementById("x").value=tpedido;
+		}
+		function anterior(){
+		    if (Indice==0) Indice=14;	
+		    else Indice--;		
+			var qimg = document.getElementById("imagen");
+			qimg.src=vimg[Indice];			
+			document.getElementById("nham").value=pedidos[Indice];
+			document.getElementById("titulo").value=vtit[Indice];
+		}
+		function siguiente(){
+			Indice++;			
+		    if (Indice>14) Indice=0;
+		    var qimg = document.getElementById("imagen");
+			qimg.src=vimg[Indice];
+			document.getElementById("nham").value=pedidos[Indice];
+			document.getElementById("titulo").value=vtit[Indice];
+		}
+	</script>
+</head>
+<body>
+	<h1 style="color: blue; font-size: 50px;"><br>MUEBLES DE MADERA DE PINO</h1>
+	<p style="color: purple; font-size: 20px;">Muebles echos al gusto de la gente de
+	 forma artesanal con la mejor madera para mayor durabilidad con diseños exclusivos</p>
+</body>
+<body>
+    
+<div class="container">
+<img src='muebles.jpg'>
+<form target="_blank" name='ventas' action='form1.php'
+      method='POST'>
+    
+    	
+								    
+<input type='text' id='titulo' value="cajonero1 500bs"><br>
+<img src='cajonero1.jpg' class="control" id="imagen">
+            <div class="row">
+				<div class="col-xs-4 col-md-12">
+				    <div class="span2">
+# comprado: <input type="text" readonly id="nham" value=0>
+                    </div>
+                    <div class="span2">
+Total a Pagar: <input type="text" readonly id="tp" value=0 name="tp">
+                </div></div>
+            </div>
+<input type='hidden' name='x' id='x'>
+<input type='button' value="<" onclick="anterior()">
+<input type='button' value="Comprar" onclick="comprar()">
+<input type='button' value="Devolver" onclick="devolver()">
+<input type='button' value=">" onclick="siguiente()"><br>
+
+<input type="button" value="CAJONERO1" onclick="vende(0)">
+<input type="button" value="CAJONERO2" onclick="vende(1)">
+<input type="button" value="ESCRITORIO1" onclick="vende(2)">
+<input type="button" value="GCOPA1" onclick="vende(3)">
+<input type="button" value="GCOPA2" onclick="vende(4)">
+<input type="button" value="LIBRERO1" onclick="vende(5)">
+<input type="button" value="LIBRERO2" onclick="vende(6)">
+<input type="button" value="LIBRERO3" onclick="vende(7)"><br>
+<input type="button" value="MODULAR1" onclick="vende(8)">
+<input type="button" value="ROPERO1" onclick="vende(9)">
+<input type="button" value="ROPERO2" onclick="vende(10)">
+<input type="button" value="ROPERO3" onclick="vende(11)">
+<input type="button" value="CAMA1" onclick="vende(12)">
+<input type="button" value="CAMA2" onclick="vende(13)">
+<input type="button" value="CAMA3" onclick="vende(14)">
+
+<br>
+<input type='submit' value="FINALIZAR COMPRA">
+</form>
+
+</div>
+
+</body>
+</html>
